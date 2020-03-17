@@ -8,7 +8,12 @@ export default new Router({
     {
       path: '/',
       name: 'landing-page',
-      component: require('@/components/LandingPage').default
+      component: require('@/page/Welcome').default
+    },
+    {
+      path: '/send-message',
+      name: 'send-message',
+      component: require('@/page/SendMessage').default
     },
     {
       path: '*',

@@ -3,8 +3,8 @@
         <div class="main">
             <div class="list-row">
                 <div class="list-row-header">
-                    <div>Message List</div>
-                    <img v-on:click="getMessages" class="refresh-icon" src="@/assets/refresh.svg">
+                    <h2>Message List</h2>
+                    <img v-on:click="getMessages" class="icon refresh-icon" src="@/assets/refresh.svg">
                 </div>
                 <div class="message-list">
                     <div v-for="(message, index) in messages" v-bind:key="index">
@@ -13,7 +13,15 @@
                 </div>
             </div>
             <div class="message-info">
-                {{showMessageHash}}
+                <div v-if="showMessageHash == ''">
+                    None
+                </div>
+                <div v-else>
+                    <div class="message-info-header">
+                        <h2 class="message-info-title">Message Hash {{showMessageHash}}</h2>
+                        <img v-on:click="showMessageHash = ''" class="icon" src="@/assets/window-close.svg">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -75,9 +83,28 @@ button {
     margin: 2px 4px;
 }
 
-.refresh-icon {
+.message-info {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.message-info-header {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.message-info-title {
+    margin: auto;
+}
+
+.icon {
     width: 20px;
     height: 20px;
+    margin: auto 0px;
 }
 
 .refresh-icon:active {

@@ -16,6 +16,11 @@ export default new Router({
       component: require('@/page/SendMessage').default
     },
     {
+      path: '/message-box',
+      name: 'message-box',
+      component: require('@/page/MessageBox').default
+    },
+    {
       path: '*',
       redirect: '/'
     }

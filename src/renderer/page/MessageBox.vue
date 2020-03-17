@@ -1,13 +1,26 @@
 <template>
     <div id="wrapper">
-        <div class="message-list">
-            <MessageItem />
+        <div class="main">
+            <div class="list-row">
+                <div class="list-row-header">
+                    <div>Message List</div>
+                    <img v-on:click="getMessages" class="refresh-icon" src="@/assets/refresh.svg">
+                </div>
+                <div class="message-list">
+                    <div v-for="(message, index) in messages" v-bind:key="index">
+                        <MessageItem v-bind:message="message" v-bind:showMessageHash.sync="showMessageHash" />
+                    </div>
+                </div>
+            </div>
+            <div class="message-info">
+                {{showMessageHash}}
+            </div>
         </div>
-        <div class="message-info">
     </div>
 </template>
 
 <script>
+
 import MessageItem from '@/components/MessageItem.vue'
 
 export default {
@@ -17,16 +30,23 @@ export default {
     },
     data: function() {
         return {
-            ip: '',
-            title: '',
-            author: '',
-            data: ''
+            messages: [],
+            showMessageHash: ''
         }
     },
     methods: {
-        send: function() {
-            console.log('test');
+        getMessages: function() {
+            console.log('Get messages from core');
+            this.$http
+                .get('http://localhost:8080/huffman_api/message_list')
+                .then(response => {
+                    console.log(response);
+                    this.messages = response.data;
+                })
         }
+    },
+    mounted: function() {
+        this.getMessages();
     }
 }
 </script>
@@ -38,9 +58,52 @@ button {
     border-radius: 8px;
 }
 
+.list-row {
+    height: 100vh;
+    width: 20vw;
+    min-width: 100px;
+    max-width: 250px;
+    border-right: solid 1px black;
+}
+
+.list-row-header {
+    display: flex;
+    flex-flow: row;
+}
+
+.list-row-header * {
+    margin: 2px 4px;
+}
+
+.refresh-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.refresh-icon:active {
+    animation: 0.6s rotatefresh 1;
+}
+
+@keyframes rotatefresh {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+        transition-duration: 0.6s;
+        transition: 0.6s;
+    }
+}
+
+.main {
+    display: flex;
+    flex-flow: row;
+}
+
 #wrapper {
     height: 100vh;
-    padding: 30px 80px;
     width: 100vw;
+    margin: 0px 10px;
 }
 </style>

@@ -6,7 +6,7 @@
         <router-link to="/send-message" class="router-btn">
             <img class="router-icon" src="@/assets/send-icon.svg">
         </router-link>
-        <router-link to="/send-message" class="router-btn">
+        <router-link to="/message-box" class="router-btn">
             <img class="router-icon" src="@/assets/mail-icon.svg">
         </router-link>
     </div>
@@ -20,6 +20,10 @@ export default {
 
 <style scoped>
 .router-btn img {
-    margin: 10px 0px;
+    margin: 10px 5px;
+}
+
+.router-btn img:hover {
+    transform: translate(4px);
 }
 </style>

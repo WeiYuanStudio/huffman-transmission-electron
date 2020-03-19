@@ -26,7 +26,26 @@ export default {
     },
     methods: {
         send: function() {
-            console.log('test');
+            this.$http
+                .post('http://localhost:8080/huffman_api/send', {
+                    ip: this.ip,
+                    title: this.title,
+                    author: this.author,
+                    data: this.data
+                })
+                .then(response => {
+                    if (response.data.code == 200) {
+                        alert('Success');
+                    } else {
+                        alert('Failed');
+                    }
+                    console.log(response);
+                })
+                .catch(error => {
+                    /* API Request failed */
+                    console.log('Send failed');
+                    console.log(error);
+                })
         }
     }
 }

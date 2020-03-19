@@ -9,6 +9,7 @@
             {{ code }}
         </div>
         <div class="message-info-message">
+            {{ message }}
         </div>
     </div>
 </template>
@@ -48,7 +49,6 @@ export default {
                     let fomatCode = '';
                     let count = 0;
                     respCode.toString().split('').forEach(char => {
-                        console.log(char)
                         if (count == 4) {
                             fomatCode += ' ';
                             count = 0;
@@ -62,16 +62,31 @@ export default {
                     console.log('Request code failed');
                     console.log(error);
                 })
+        },
+        updateMessage() {
+            /* Request huffman dict */
+            this.$http
+                .get('http://localhost:8080/huffman_api/message/' + this.showMessageHash)
+                .then(response => {
+                    console.log(response);
+                    this.message = response.data;
+                })
+                .catch(error => {
+                    console.log('Request message failed');
+                    console.log(error);
+                })
         }
     },
     created() {
         this.updateDict();
         this.updateCode();
+        this.updateMessage();
     },
     watch: {
         showMessageHash: function() {
             this.updateDict();
             this.updateCode();
+            this.updateMessage();
         }
     }
 }

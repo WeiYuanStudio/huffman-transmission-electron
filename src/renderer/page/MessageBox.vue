@@ -96,6 +96,10 @@ button {
     margin: auto 4px;
 }
 
+.message-list {
+    /* Todo Fix message list overflow */
+}
+
 .message-info {
     width: 100%;
     display: flex;

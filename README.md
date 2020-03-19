@@ -1,6 +1,16 @@
 # huffman-transmission-electron
 
+>哈夫曼P2P发送信息GUI
+
 > GUI for huffman transmission project
+
+---
+
+## GUI展示
+
+![8ysjAA.png](https://s1.ax1x.com/2020/03/19/8ysjAA.png)
+
+![8y6Gqg.png](https://s1.ax1x.com/2020/03/19/8y6Gqg.png)
 
 #### Build Setup
 

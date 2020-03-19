@@ -14,6 +14,7 @@
             </div>
             <div class="message-info">
                 <div v-if="showMessageHash == ''">
+                    <!--Show message null-->
                     None
                 </div>
                 <div v-else>
@@ -21,6 +22,7 @@
                         <h2 class="message-info-title">Message Hash {{showMessageHash}}</h2>
                         <img v-on:click="showMessageHash = ''" class="icon" src="@/assets/window-close.svg">
                     </div>
+                    <MessageBoxBody class="message-box-body" v-bind:showMessageHash="showMessageHash" />
                 </div>
             </div>
         </div>
@@ -28,13 +30,14 @@
 </template>
 
 <script>
-
 import MessageItem from '@/components/MessageItem.vue'
+import MessageBoxBody from '@/components/MessageBoxBody.vue'
 
 export default {
     name: 'message-box',
     components: {
-        MessageItem
+        MessageItem,
+        MessageBoxBody
     },
     data: function() {
         return {
@@ -50,6 +53,10 @@ export default {
                 .then(response => {
                     console.log(response);
                     this.messages = response.data;
+                })
+                .catch(error => {
+                    console.log('Can not connect to core');
+                    console.log(error);
                 })
         }
     },
@@ -74,13 +81,19 @@ button {
     border-right: solid 1px black;
 }
 
+.message-box-body {
+    flex: 1;
+}
+
 .list-row-header {
+    height: 10vh;
+    border-bottom: solid 1px black;
     display: flex;
     flex-flow: row;
 }
 
 .list-row-header * {
-    margin: 2px 4px;
+    margin: auto 4px;
 }
 
 .message-info {
@@ -91,6 +104,7 @@ button {
 
 .message-info-header {
     width: 100%;
+    height: 10vh;
     display: flex;
     flex-flow: row;
     flex-wrap: nowrap;
@@ -104,7 +118,6 @@ button {
 .icon {
     width: 20px;
     height: 20px;
-    margin: auto 0px;
 }
 
 .refresh-icon:active {
@@ -131,6 +144,6 @@ button {
 #wrapper {
     height: 100vh;
     width: 100vw;
-    margin: 0px 10px;
+    margin: none;
 }
 </style>

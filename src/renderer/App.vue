@@ -31,6 +31,7 @@ body {
 
 #left-bar {
   width: 40px;
+  min-width: 40px;
   padding: 4px;
   border-right: solid 1px gray;
 }

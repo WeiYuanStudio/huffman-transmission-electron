@@ -119,6 +119,7 @@ export default {
 
 .message-info-code {
     width: 20%;
+    padding: 5px;
     border: solid 1px black;
     border-left: none;
     overflow-wrap: break-word;
@@ -126,6 +127,7 @@ export default {
 
 .message-info-message {
     width: 60%;
+    padding: 5px;
     border: solid 1px black;
     border-left: none;
     border-right: none;

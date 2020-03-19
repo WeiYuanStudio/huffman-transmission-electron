@@ -14,8 +14,10 @@
             </div>
             <div class="message-info">
                 <div v-if="showMessageHash == ''">
-                    <!--Show message null-->
-                    None
+                    <div class="message-null-icon">
+                        <img src="@/assets/mail-icon.svg">
+                        <h2>Message Box</h2>
+                    </div>
                 </div>
                 <div v-else>
                     <div class="message-info-header">
@@ -76,7 +78,7 @@ button {
 .list-row {
     height: 100vh;
     width: 20vw;
-    min-width: 100px;
+    min-width: 180px;
     max-width: 250px;
     border-right: solid 1px black;
 }
@@ -100,8 +102,27 @@ button {
     /* Todo Fix message list overflow */
 }
 
+.message-null-icon {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    margin-top: 12%;
+    filter: opacity(0.3);
+}
+
+.message-null-icon img {
+    width: 200px;
+    height: auto;
+    margin: auto;
+}
+
+.message-null-icon h2 {
+    margin: 10px auto;
+}
+
 .message-info {
-    width: 100%;
+    width: -webkit-fill-available;
+    height:-webkit-fill-available;
     display: flex;
     flex-flow: column;
 }

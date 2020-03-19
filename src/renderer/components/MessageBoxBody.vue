@@ -45,7 +45,7 @@ export default {
                 .then(response => {
                     console.log(response);
                     /* 四个一组 */
-                    let respCode = response.data;
+                    let respCode = response.data.text;
                     let fomatCode = '';
                     let count = 0;
                     respCode.toString().split('').forEach(char => {
@@ -69,7 +69,7 @@ export default {
                 .get('http://localhost:8080/huffman_api/message/' + this.showMessageHash)
                 .then(response => {
                     console.log(response);
-                    this.message = response.data;
+                    this.message = response.data.text;
                 })
                 .catch(error => {
                     console.log('Request message failed');
